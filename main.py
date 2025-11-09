@@ -1,5 +1,6 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 from dotenv import load_dotenv
 import os
@@ -25,7 +26,8 @@ if __name__ == "__main__":
         template=summary_template
     )
 
-    llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+    # llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+    llm = chat = ChatOllama(model="llama3")  
     chain = summary_prompt_template | llm
     res = chain.invoke({"info": information})
     # detial info is in res.content
